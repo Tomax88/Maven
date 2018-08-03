@@ -1,12 +1,15 @@
 package com.academy.test;
 import com.academy.lesson6.Task.Currency;
+import org.testng.annotations.Test;
 
+@Test
 public class CurrencyTest {
     public static void main(String[] args) {
         CurrencyTest test = new CurrencyTest();
         test.constructorTest();
         test.copyConstructorTest();
         test.isEqualTest();
+//        Assert.
     }
 
     public void constructorTest() {

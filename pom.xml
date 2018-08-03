@@ -8,5 +8,39 @@
     <artifactId>java-part</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--Зависимые библиотеки, подключенные к проекту-->
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+    </dependencies>
 
+    <!--Управление плагинами-->
+    <build>
+        <plugins>
+            <!--Плагин для управления запуском тестов-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <!--Путь к конфигурации testng.xml-->
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
