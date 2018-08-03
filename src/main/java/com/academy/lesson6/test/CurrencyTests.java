@@ -1,7 +1,7 @@
 package com.academy.lesson6.test;
 import com.academy.lesson6.Task.Currency;
 import com.academy.lesson8.annotation.Log;
-import com.academy.lesson8.annotation.Test;
+import com.academy.lesson8.annotation.CustomTest;
 
 public class CurrencyTests {
 //    public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class CurrencyTests {
 //        test.testConstructorUsingObject();
 //    }
 
-    @Test
+    @CustomTest
     @Log
     public void constructorTest() {
         // ******test data******
@@ -68,12 +68,12 @@ public class CurrencyTests {
         }
     }
 
-    @Test
+    @CustomTest
     @Log
     public void copyConstructorTest() {
     }
 
-    @Test
+    @CustomTest
     @Log
     public void isEqualTest() {
         Currency cur1 = new Currency(10, "руб");
@@ -84,7 +84,7 @@ public class CurrencyTests {
         assert !cur1.isEqual(cur3);
     }
 
-    @Test
+    @CustomTest
 //    @Log
     public void testConstructorUsingObject() {
         // ******test data******

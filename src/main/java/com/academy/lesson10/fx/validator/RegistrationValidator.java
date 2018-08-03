@@ -3,7 +3,7 @@ package com.academy.lesson10.fx.validator;
 import com.academy.fx.model.RegistrationForm;
 import com.academy.fx.service.UserService;
 
-public class RegistrationValidator implements Validator<RegistrationForm> {
+public abstract class RegistrationValidator implements Validator<RegistrationForm> {
     private static final String REGEX = "^[\\w]+[.]?[\\w]+@[\\w]+[.]?[\\w]+$";
 
     private String errorMessage = "";

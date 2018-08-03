@@ -4,7 +4,7 @@ import com.academy.fx.model.AuthForm;
 import com.academy.fx.model.User;
 import com.academy.fx.service.UserService;
 
-public class AuthValidator implements Validator<AuthForm> {
+public abstract class AuthValidator implements Validator<AuthForm> {
     private String errorMsg = "";
     private UserService userService = UserService.getInstance();
 

@@ -1,53 +1,73 @@
 package com.academy.lesson10.fx.controller;
 
-import com.academy.fx.model.User;
-import com.academy.fx.page.PageFactory;
-import com.academy.fx.service.UserService;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import com.academy.fx.model.RegistrationForm;
+import com.academy.lesson10.fx.validator.RegistrationValidator;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import java.util.List;
+@Test
+class FxValidatorTests {
 
-public class AdminController {
-
-    @FXML
-    private GridPane grid;
-
-    private UserService userService = UserService.getInstance();
-
-    public void onInit() {
-        System.out.println("grid: " + grid);
-        List<User> users = userService.getAll();
-        for (int i = 0; i < users.size(); i++) {
-            System.out.println("user: " + users.get(i));
-            Label firstNameLbl = new Label();
-            Label lastNameLbl = new Label();
-            Label mailLbl = new Label();
-
-            firstNameLbl.setText(users.get(i).getFirstName());
-            lastNameLbl.setText(users.get(i).getLastName());
-            mailLbl.setText(users.get(i).getMail());
-
-            grid.add(firstNameLbl, 0, i+1);
-            grid.add(lastNameLbl, 1, i+1);
-            grid.add(mailLbl, 2, i+1);
+    private RegistrationValidator validator = new RegistrationValidator() {
+        @Override
+        public boolean validate(com.academy.lesson10.fx.model.RegistrationForm registrationForm) {
+            return false;
         }
-    }
+    };
 
-    @FXML
-    public void onClickLoginLink() {
-        PageFactory.getAdminPage().hide();
-        PageFactory.getLoginPage().show();
-    }
+    String[] validPasswords = {"1qweEtyuiq", "123Qwerty", "Azerty12!", "R421ghjk"};
+    String[] invalidPasswords = {"aaa", "", "12345678", "dsfdsfsfs", "WEQQEQEQ", "123gfhfjk",
+            "WERET2ET1", "FgsasGFH", "<script>alert('Hi!');</script>", "!Adnjh1", "~##$$%$^%^fdhf%&*&^*", "Йцукен45!", "!SDE1gy"};
 
-    @FXML
-    public void onClickRegisterLink() {
-        PageFactory.getAdminPage().hide();
-        PageFactory.getRegistrationPage().show();
-    }
+    public void testPasswordValidator(){
 
-    public void onHide() {
-        grid.getRowConstraints().remove(1, grid.getRowConstraints().size()+1);
+
+        RegistrationForm registrationForm = new RegistrationForm()
+                .withFirstName("", "user")
+                .withLastName("", "user")
+                .withMail("", "test@test.ua")
+                .withPassword("", "Azerty12!")
+                .withConfirmPassword("", "Azerty12!");
+
+        for (int i = 0; i < validPasswords.length ; i++) {
+
+            registrationForm.withPassword("", validPasswords[i]);
+            registrationForm.withConfirmPassword("", validPasswords[i]);
+            boolean isValid = validator.validate(registrationForm);
+            System.out.println(isValid);
+            Assert.assertTrue(isValid);
+        }
+
+        System.out.println();
+
+        for (int i = 0; i <invalidPasswords.length ; i++) {
+
+            registrationForm.withPassword("", invalidPasswords[i]);
+            registrationForm.withConfirmPassword("", invalidPasswords[i]);
+            boolean isValid = validator.validate(registrationForm);
+            System.out.println(isValid);
+            Assert.assertTrue(!isValid);
+        }
+
+        for (int i = 0; i < validPasswords.length ; i++) {
+            for (int j = 0; j < invalidPasswords.length ; j++) {
+
+                //password mismatch
+
+                registrationForm.withPassword("", validPasswords[0]);
+                registrationForm.withConfirmPassword("", invalidPasswords[0]);
+                boolean isValid = validator.validate(registrationForm);
+                System.out.println(isValid);
+                Assert.assertTrue(!isValid);
+
+                registrationForm.withPassword("", invalidPasswords[0]);
+                registrationForm.withConfirmPassword("", validPasswords[0]);
+                isValid = validator.validate(registrationForm);
+                System.out.println(isValid);
+                Assert.assertTrue(!isValid);
+
+            }
+
+        }
     }
 }

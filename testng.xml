@@ -1,9 +1,12 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Suite1" verbose="1" >
-    <test name="Nopackage" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!--Конфигурация для testNG фреймворка-->
+<suite name="suit">
+    <test name="test">
         <packages>
-            <package name="com.academy.*">
-            </package>
+            <!--Запускаем все тесты из пакета 'com.academy.tests.*'-->
+            <package name="com.academy.test.*" />
         </packages>
     </test>
 </suite>

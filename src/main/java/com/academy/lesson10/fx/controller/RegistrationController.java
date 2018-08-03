@@ -1,18 +1,16 @@
 package com.academy.lesson10.fx.controller;
 
-import com.academy.fx.model.RegistrationForm;
 import com.academy.fx.model.User;
 import com.academy.fx.page.PageFactory;
 import com.academy.fx.service.UserService;
 import com.academy.fx.validator.RegistrationValidator;
-import com.academy.fx.validator.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class RegistrationController {
-    private Validator<RegistrationForm> formValidator = new RegistrationValidator();
+    private RegistrationValidator formValidator = new RegistrationValidator();
 
     // view components
     @FXML
@@ -76,8 +74,8 @@ public class RegistrationController {
         PageFactory.getAdminPage().show();
     }
 
-    private RegistrationForm prepareForm() {
-        return new RegistrationForm()
+    private com.academy.lesson10.fx.model.RegistrationForm prepareForm() {
+        return new com.academy.lesson10.fx.model.RegistrationForm()
                 .withFirstName(firstNameLbl.getText().replace(":", ""), firstNameTxt.getText())
                 .withLastName(lastNameLbl.getText().replace(":", ""), lastNameTxt.getText())
                 .withMail(mailLbl.getText().replace(":", ""), mailTxt.getText())
@@ -101,4 +99,10 @@ public class RegistrationController {
     private void showError(String msg) {
         msgLbl.setText(msg);
     }
-}
+
+    private class RegistrationForm {
+        public void withFirstName(String replace , String text) {
+        }
+    }
+    }
+

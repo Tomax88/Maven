@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="1" total="5" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="suit" duration-ms="45" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+    <groups>
+    </groups>
+    <test name="test" duration-ms="45" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+      <class name="com.academy.test.lesson10.FxValidatorTests">
+        <test-method status="PASS" signature="testPasswordValidator()[pri:0, instance:com.academy.test.lesson10.FxValidatorTests@6bf256fa]" name="testPasswordValidator" duration-ms="10" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPasswordValidator -->
+      </class> <!-- com.academy.test.lesson10.FxValidatorTests -->
+      <class name="com.academy.test.CurrencyTest">
+        <test-method status="PASS" signature="constructorTest()[pri:0, instance:com.academy.test.CurrencyTest@1554909b]" name="constructorTest" duration-ms="9" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- constructorTest -->
+        <test-method status="PASS" signature="copyConstructorTest()[pri:0, instance:com.academy.test.CurrencyTest@1554909b]" name="copyConstructorTest" duration-ms="0" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyConstructorTest -->
+        <test-method status="PASS" signature="isEqualTest()[pri:0, instance:com.academy.test.CurrencyTest@1554909b]" name="isEqualTest" duration-ms="0" started-at="2018-08-03T18:13:23Z" finished-at="2018-08-03T18:13:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- isEqualTest -->
+      </class> <!-- com.academy.test.CurrencyTest -->
+    </test> <!-- test -->
+  </suite> <!-- suit -->
+</testng-results>

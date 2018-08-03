@@ -1,6 +1,6 @@
 package com.academy.lesson10.fx.model;
 
-public class RegistrationForm {
+public class RegistrationForm extends com.academy.fx.model.RegistrationForm {
     private static final int INDEX_FIELD = 0;
     private static final int INDEX_VALUE = 1;
 

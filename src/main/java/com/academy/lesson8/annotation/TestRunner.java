@@ -10,7 +10,7 @@ public class TestRunner {
         Class<?> clazz = CurrencyTests.class;
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
-            if (method.isAnnotationPresent(Test.class)) {
+            if (method.isAnnotationPresent(CustomTest.class)) {
 //                method.getAnnotation().
                 if (method.isAnnotationPresent(Log.class)) {
                     System.out.println(method.getName());
