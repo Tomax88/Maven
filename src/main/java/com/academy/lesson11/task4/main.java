@@ -14,7 +14,7 @@ public class main {
                 a = scanner.nextDouble();
             }
                 catch(Exception e){
-                System.out.println("Введи число мраааазь");
+                System.out.println("Было сказанно введи число!!!!");
                 continue;
             }
             System.out.println( "Введите номер операции из перечисленного списка (1 = + ,2 = - ,3 = * ,4 = / ,5 = ^ ,6 = №)" );
@@ -51,7 +51,7 @@ public class main {
                         c = scanner.nextDouble();
                     }
                     catch(Exception e){
-                        System.out.println("Введи число мраааазь");
+                        System.out.println("Было сказанно введи число!!!!");
                     }
 
                     calc.multiplication( a,c );
@@ -61,7 +61,7 @@ public class main {
                         c = scanner.nextDouble();
                     }
                     catch(Exception e){
-                        System.out.println("Введи число мраааазь");
+                        System.out.println("Было сказанно введи число!!!!");
                     }
 
                     try {
