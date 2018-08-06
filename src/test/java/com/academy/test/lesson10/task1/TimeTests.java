@@ -5,7 +5,6 @@ import com.academy.lesson10.task1.TimeFormat;
 import com.academy.lesson10.task1.TimeImpl;
 import com.academy.lesson10.task1.TimeImplSeconds;
 import org.testng.Assert;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static com.academy.lesson10.task1.TimeFormat.HOUR_12;
@@ -13,7 +12,7 @@ import static com.academy.lesson10.task1.TimeFormat.HOUR_24;
 
 public class TimeTests {
 @Test
-@Ignore
+//@Ignore
     public void testTime() {
         // data
         final int HOUR_I = 0;

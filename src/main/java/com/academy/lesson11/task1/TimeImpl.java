@@ -1,4 +1,4 @@
-package com.academy.lesson10.task1;
+package com.academy.lesson11.task1;
 
 public class TimeImpl implements Time {
     int h;
@@ -6,7 +6,20 @@ public class TimeImpl implements Time {
     int s;
 
     @Override
-    public void setTime(int hours , int minutes , int seconds) {
+    public void setTime(int hours , int minutes , int seconds) throws Exception {
+        if(h>24 || m>60 || s>60){
+            Exception e= new Exception();
+            throw e;
+        }
+        this.h = hours;
+        this.m = minutes;
+        this.s = seconds;
+    }
+    TimeImpl(int hours , int minutes , int seconds) throws Exception {
+        if(h>24 || m>60 || s>60){
+            Exception e= new Exception();
+            throw e;
+        }
         this.h = hours;
         this.m = minutes;
         this.s = seconds;

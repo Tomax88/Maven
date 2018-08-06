@@ -1,4 +1,4 @@
-package com.academy.lesson10.task1;
+package com.academy.lesson11.task1;
 
 public class TimeImplSeconds implements Time {
     int s;
