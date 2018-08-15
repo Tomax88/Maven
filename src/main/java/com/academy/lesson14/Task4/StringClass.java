@@ -34,7 +34,11 @@ public class StringClass {
         SortByLastLetter sortByLastLetter = stringList -> sList.sort( new CustomSortByLastLetter() );
         sortByLastLetter.function( sList );
         System.out.println( "Sorted by last letter: " + sList );
-
+        List<String> list = Arrays.asList(words);
+        list.sort((s1, s2)->Character.compare(s1.charAt(s1.length()-1), s2.charAt(s2.length()-1)));
+        //list.sort(Comparator.comparingInt(s -> s.charAt(s.length() - 1)));
+        System.out.println(list);
+        
     }
 
     interface SplitSentence {
