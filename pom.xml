@@ -26,6 +26,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
+        </dependency>
+        <dependency>
             <groupId>com.academy.fx</groupId>
             <artifactId>login-form</artifactId>
             <version>1.0</version>
@@ -35,6 +40,18 @@
             <artifactId>testng</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+        <!--Силениум вебдрайвер-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+        <!--работа с Exl-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
         </dependency>
     </dependencies>
 
