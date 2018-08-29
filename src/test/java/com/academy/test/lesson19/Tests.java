@@ -1,5 +1,6 @@
 package com.academy.test.lesson19;
 
+
 import java.util.concurrent.TimeUnit;
 
 import com.academy.lesson18.manager.PropertyManager;
@@ -11,9 +12,8 @@ import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 
 
-public class LoginTests {
+public class Tests {
     private WebDriver driver;
-    //  private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     PropertyManager propertyManager = PropertyManager.getInstance();
@@ -22,28 +22,28 @@ public class LoginTests {
     public void setUp() throws Exception {
         System.setProperty( "webdriver.chrome.driver" , propertyManager.getProperty( "chrome.driver" ) );
         driver = new ChromeDriver();
-        //  baseUrl = "https://www.katalon.com/";
         driver.manage().timeouts().implicitlyWait( 30 , TimeUnit.SECONDS );
     }
 
     @Test
-    public void testUntitledTestCase() throws Exception {
+    public void testSingTestCase() throws Exception {
         driver.get( "http://automationpractice.com/index.php" );
         driver.findElement( By.linkText( "Sign in" ) ).click();
-        driver.findElement( By.xpath( "(.//*[normalize-space(text()) and normalize-space(.)='Already registered?'])[1]/following::div[2]" ) ).click();
-        driver.findElement( By.id( "email" ) ).click();
         driver.findElement( By.id( "email" ) ).clear();
-        driver.findElement( By.id( "email" ) ).sendKeys( propertyManager.getProperty( "automation.username" ) );
+        driver.findElement( By.id( "email" ) ).sendKeys( "wizik88@gmail.com" );
+        driver.findElement( By.id( "passwd" ) ).clear();
+        driver.findElement( By.id( "passwd" ) ).sendKeys( "Tomax1488" );
         driver.findElement( By.id( "passwd" ) ).click();
         driver.findElement( By.id( "passwd" ) ).clear();
-        driver.findElement( By.id( "passwd" ) ).sendKeys( propertyManager.getProperty( "automation.password" ) );
+        driver.findElement( By.id( "passwd" ) ).sendKeys( "" );
         driver.findElement( By.xpath( "(.//*[normalize-space(text()) and normalize-space(.)='Forgot your password?'])[1]/following::span[1]" ) ).click();
+        driver.findElement( By.id( "passwd" ) ).clear();
+        driver.findElement( By.id( "passwd" ) ).sendKeys( "Tomax1488" );
         try {
-            assertEquals( driver.findElement( By.xpath( "(.//*[normalize-space(text()) and normalize-space(.)='Sign out'])[1]/preceding::span[1]" ) ).getText() , "Dima Bologov" );
+            assertEquals( driver.findElement( By.xpath( "(.//*[normalize-space(text()) and normalize-space(.)='Authentication'])[2]/following::li[1]" ) ).getText() , "Password is required." );
         } catch (Error e) {
             verificationErrors.append( e.toString() );
         }
-        driver.findElement( By.linkText( "Sign out" ) ).click();
     }
 
     @AfterClass(alwaysRun = true)
