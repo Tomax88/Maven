@@ -1,0 +1,38 @@
+1) Дан файл selector-practice.html
+	Используя селекторы выбрать следующие элементы:
+		a) выбрать input типа checkbox.
+		b) выбрать input типа checkbox, НЕ отмеченный.
+		c) Найти все элементы с id=message или message-*.
+		d) Найти все элементы с id=message-*.
+		e) Найти все ссылки с расширением href="...zip".
+		f) Найти все элементы с атрибутом data-action, содержащим delete в списке (через пробел).
+		g) Найти все элементы, у которых ЕСТЬ атрибут data-action, но он НЕ содержит delete в списке (через пробел).
+		h) Выбрать все чётные элементы списка #messages.
+		i) Выбрать один элемент сразу за заголовком h3#widget-title на том же уровне вложенности.
+		k) Выбрать все ссылки, следующие за заголовком h3#widget-title на том же уровне вложенности.
+		l) Выбрать ссылку внутри последнего элемента списка #messages.
+a) выбрать input типа checkbox.
+//input[@type="checkbox"]
+b) выбрать input типа checkbox, НЕ отмеченный.
+//input[1]
+b1) выбрать input типа checkbox, отмеченный.
+//input[@checked]
+c) Найти все элементы с id=message или message-*.
+[id|="message"]
+//*[contains(@id,"message")][not(contains(@id,"messages"))]
+d) Найти все элементы с id=message-*.
+//li[@id]
+e) Найти все ссылки с расширением href="...zip".
+//a[@href="http://site.com/list.zip"]
+f) Найти все элементы с атрибутом data-action, содержащим delete в списке (через пробел).
+//li[contains(@data-action,' delete')]
+g) Найти все элементы, у которых ЕСТЬ атрибут data-action, но он НЕ содержит delete в списке (через пробел).
+//li[@data-action][not(contains(@data-action," delete"))]
+h) Выбрать все чётные элементы списка #messages.
+//li[position() mod 2 = 0]
+i) Выбрать один элемент сразу за заголовком h3#widget-title на том же уровне вложенности.
+//ul
+k) Выбрать все ссылки, следующие за заголовком h3#widget-title на том же уровне вложенности.
+//body/a
+l) Выбрать ссылку внутри последнего элемента списка #messages.
+//li/a
