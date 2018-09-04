@@ -1,21 +1,24 @@
-package com.academy.test.lesson20;
+package com.academy.lesson20;
 
 import com.academy.lesson18.manager.PropertyManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
 public class SortSearchInspect {
     private WebDriver driver;
@@ -73,28 +76,51 @@ public class SortSearchInspect {
         driver.get("http://automationpractice.com/index.php");
         driver.findElement(By.cssSelector("#block_top_menu > ul > li:nth-child(2) > a")).click();
         new Select(driver.findElement(By.id("selectProductSort"))).selectByVisibleText("Price: Lowest first");
+        driver.findElement(By.xpath("//*[@id=\"list\"]/a/i")).click();
 
         // ждем пока прогрузится
         waitUntilScriptComplete(driver);
 
-        // можно делать проверки
-        try {
-            assertEquals(driver.findElement(By.xpath("//div[@class='product-count']")).getText(), "Showing 1 - 5 of 5 items");
-        } catch (Error e) {
-            verificationErrors.append(e.toString());
+        List<WebElement> actualPrices = driver.findElements(By.cssSelector("#center_column > ul > li > div > div > div.right-block.col-xs-4.col-xs-12.col-md-4 > div > div.content_price.col-xs-5.col-md-12 > span.price.product-price"));
+        List<String> actualPrises1 = new ArrayList<String>();
+        for(WebElement e : actualPrices){
+            actualPrises1.add(e.getText());
         }
+        List<String> expectedPrices = new ArrayList<>(actualPrises1);
+        expectedPrices.sort(String::compareTo);
 
-    }
+        System.out.println(actualPrises1);
+        System.out.println(expectedPrices);
+        Assert.assertEquals(actualPrises1, expectedPrices);
 
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() throws Exception {
+//        List<String> actualPrices =
+//                driver.findElements(By.cssSelector("#center_column > ul > li > div > div > div.right-block.col-xs-4.col-xs-12.col-md-4 > div > div.content_price.col-xs-5.col-md-12 > span.price.product-price"))
+//                        //#center_column > ul > li > div > div > div.right-block.col-xs-4.col-xs-12.col-md-4 > div > div.content_price.col-xs-5.col-md-12 > span.price.product-price
+//                        .stream()
+//                        .map(WebElement::getText)
+//                        .peek(String::trim)
+//                        .collect(Collectors.toList());
+//
+//        List<String> expectedPrices = new ArrayList<>(actualPrices);
+//        expectedPrices.sort(String::compareTo);
+//        System.out.println("actual: " + actualPrices);
+//        System.out.println("expected: " + expectedPrices);
+//        Assert.assertEquals(actualPrices, expectedPrices);
+
         driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals( verificationErrorString )) {
-            fail( verificationErrorString );
-        }
+
+        // можно делать проверки
+//        try {
+//            assertEquals(driver.findElement(By.xpath("//div[@class='product-count']")).getText(), "Showing 1 - 5 of 5 items");
+//        } catch (Error e) {
+//            verificationErrors.append(e.toString());
+//        }
+
     }
+
+
+
 
 
 
@@ -118,4 +144,6 @@ public class SortSearchInspect {
 
         return wait.until(jQueryLoad) && wait.until(jsLoad);
     }
+
+
 }

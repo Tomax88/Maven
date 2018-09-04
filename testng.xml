@@ -3,10 +3,18 @@
 
 <!--Конфигурация для testNG фреймворка-->
 <suite name="suit">
-    <test name="test">
+    <test name="test1">
+        <parameter name="browser" value="chrome" />
         <packages>
-            <!--Запускаем все тесты из пакета 'com.academy.tests.*'-->
-            <package name="com.academy.test.*" />
+            <!--Запускаем все тесты из пакета 'com.academy.test.'-->
+            <package name="com.academy.test.lesson23.test.*" />
         </packages>
     </test>
+    <!--<test name="test2">-->
+        <!--<parameter name="browser" value="firefox" />-->
+        <!--<packages>-->
+            <!--&lt;!&ndash;Запускаем все тесты из пакета 'com.academy.test.'&ndash;&gt;-->
+            <!--<package name="com.academy.test.*" />-->
+        <!--</packages>-->
+    <!--</test>-->
 </suite>

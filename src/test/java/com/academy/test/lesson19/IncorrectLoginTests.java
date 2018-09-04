@@ -3,6 +3,7 @@ package com.academy.test.lesson19;
 import java.util.concurrent.TimeUnit;
 
 import com.academy.lesson18.manager.PropertyManager;
+import com.academy.test.BaseTest;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.*;
@@ -12,20 +13,20 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class IncorrectLoginTests {
+public class IncorrectLoginTests extends BaseTest {
     private WebDriver driver;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     PropertyManager propertyManager = PropertyManager.getInstance();
 
-    @BeforeClass(alwaysRun = true)
-    public void setUp() throws Exception {
-        System.setProperty( "webdriver.chrome.driver" , propertyManager.getProperty( "chrome.driver" ) );
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait( 30 , TimeUnit.SECONDS );
-    }
+//    @BeforeClass(alwaysRun = true)
+//    public void setUp() throws Exception {
+//        System.setProperty( "webdriver.chrome.driver" , propertyManager.getProperty( "chrome.driver" ) );
+//        driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait( 30 , TimeUnit.SECONDS );
+//    }
 
-    @Test
+//    @Test(dataProvider ="authProvider" )
     public void incorrectLoginData() throws Exception {
         driver.get( "http://automationpractice.com/index.php" );
         driver.findElement( By.linkText( "Sign in" ) ).click();
@@ -43,7 +44,7 @@ public class IncorrectLoginTests {
         }
     }
 
-    @Test
+//    @Test
     public void emptyPasswordField() throws Exception {
         driver.get( "http://automationpractice.com/index.php?controller=authentication&back=my-account" );
         driver.findElement( By.id( "email" ) ).click();
@@ -57,7 +58,7 @@ public class IncorrectLoginTests {
         }
     }
 
-    @Test
+//    @Test
     public void incorrectPassword() throws Exception {
         driver.get( "http://automationpractice.com/index.php?controller=authentication" );
         driver.findElement( By.id( "email" ) ).click();
@@ -75,7 +76,7 @@ public class IncorrectLoginTests {
         }
     }
 
-    @Test
+//    @Test
     public void incorrectEmail() throws Exception {
         driver.get( "http://automationpractice.com/index.php?controller=authentication" );
         driver.findElement( By.id( "email" ) ).click();
@@ -89,8 +90,8 @@ public class IncorrectLoginTests {
         }
     }
 
-    @Test
-    public void emptyAllFields() throws Exception {
+    @Test (dataProvider = "empty")
+    public void emptyAllFields(String email, String password) throws Exception {
         driver.get( "http://automationpractice.com/index.php?controller=authentication" );
         driver.findElement( By.id( "email" ) ).clear();
         driver.findElement( By.id( "email" ) ).sendKeys( "" );
@@ -104,47 +105,53 @@ public class IncorrectLoginTests {
             verificationErrors.append( e.toString() );
         }
     }
+    @DataProvider(name="empty")
+    private Object[][] empty(){
+        return new Object[][]{
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals( verificationErrorString )) {
-            fail( verificationErrorString );
-        }
+        };
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement( by );
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    private boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() throws Exception {
+//        driver.quit();
+//        String verificationErrorString = verificationErrors.toString();
+//        if (!"".equals( verificationErrorString )) {
+//            fail( verificationErrorString );
+//        }
+//    }
+//
+//    private boolean isElementPresent(By by) {
+//        try {
+//            driver.findElement( by );
+//            return true;
+//        } catch (NoSuchElementException e) {
+//            return false;
+//        }
+//    }
+//
+//    private boolean isAlertPresent() {
+//        try {
+//            driver.switchTo().alert();
+//            return true;
+//        } catch (NoAlertPresentException e) {
+//            return false;
+//        }
+//    }
+//
+//    private String closeAlertAndGetItsText() {
+//        try {
+//            Alert alert = driver.switchTo().alert();
+//            String alertText = alert.getText();
+//            if (acceptNextAlert) {
+//                alert.accept();
+//            } else {
+//                alert.dismiss();
+//            }
+//            return alertText;
+//        } finally {
+//            acceptNextAlert = true;
+//        }
+//    }
 }
 
